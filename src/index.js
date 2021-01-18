@@ -1,17 +1,54 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+class MyForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      username: '',
+      age: null,
+    };
+  }
+  myChangeHandler = (event) => {
+    let nam = event.target.name;
+    let val = event.target.value;
+    this.setState({[nam]: val});
+  }
+  render() {
+    return (
+      <div style={{content: "center"}}>
+      <form onSubmit={this.handleSubmit}>
+      <h1>Form {this.state.username} {this.state.age}</h1>
+      <p>Enter your name:</p>
+      <input
+        type='text'
+        name='username'
+        onChange={this.myChangeHandler}
+      />
+      <p>Enter your Phone No.:</p>
+      <input
+        type='number'
+        name='PhoneNo.'
+        onChange={this.myChangeHandler}
+      />
+      <p>Enter your password:</p>
+      <input
+        type='password'
+        name='password'
+        onChange={this.myChangeHandler}
+      />
+      <p>Enter your re-type password:</p>
+      <input
+        type='password'
+        name='password2'
+        onChange={this.myChangeHandler}
+      />
+          
+      </form>
+       <button type="submit">submit</button> 
+       </div>
+    );
+  }
+}
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+ReactDOM.render(<MyForm />, document.getElementById('root'));
